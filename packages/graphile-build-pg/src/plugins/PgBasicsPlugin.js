@@ -46,8 +46,7 @@ export function preventEmptyResult<
   // eslint-disable-next-line flowtype/no-weak-types
   O: { [key: string]: (...args: Array<any>) => string }
 >(obj: O): $ObjMap<O, <V>(V) => V> {
-  return Object.keys(obj).reduce((memo, key) => {
-    const fn = obj[key];
+  return Object.entries(obj).reduce((memo, [key, fn]) => {
     memo[key] = function(...args) {
       const result = fn.apply(this, args);
       if (typeof result !== "string" || result.length === 0) {

@@ -1147,9 +1147,8 @@ function makeGraphQLHstoreType(graphql, hstoreTypeName) {
       return true;
     } else if (typeof obj === "object") {
       // A hash with string/null values is also okay
-      const keys = Object.keys(obj);
-      for (const key of keys) {
-        const val = obj[key];
+      const values = Object.values(obj);
+      for (const val of values) {
         if (val === null) {
           // Null is okay
         } else if (typeof val === "string") {
